@@ -1,5 +1,6 @@
 package com.greenhandzdl
 
+import com.greenhandzdl.func.init_folder
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.utils.info
@@ -14,6 +15,7 @@ object MiraiConsoleReflectionPluginVersion : KotlinPlugin(
     }
 ) {
     override fun onEnable() {
+        init_folder()//necessary
         logger.info { "Plugin loaded" }
     }
 }

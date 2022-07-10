@@ -7,6 +7,9 @@ plugins {
     id("net.mamoe.mirai-console") version "2.12.0"
 }
 dependencies{
+    //log
+    implementation("org.slf4j:slf4j-simple:1.7.36")
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
     //org.json
     implementation("org.json:json:20220320")
 }
