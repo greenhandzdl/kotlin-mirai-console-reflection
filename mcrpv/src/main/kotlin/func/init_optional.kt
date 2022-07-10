@@ -6,11 +6,12 @@ import func.tools.error_break_boolean
 import func.tools.folder_check
 import func.tools.folder_done
 
-fun init_folder(){
-    while (error_break_boolean(true, folder_check("$configFolder/RSets"))) {
-        folder_done("$configFolder/RSets", folder_check("$configFolder/RSets"))
-    }//Mapping possible management options
-    while (error_break_boolean(true, folder_check("$dataFolder/cookies"))) {
-        folder_done("$dataFolder/cookies", folder_check("$dataFolder/cookies"))
-    }//temporary storage state(Including the status of receiving and sending)
+fun init_folder(pathName :String){
+    do{folder_done("$pathName", folder_check("$pathName"))}while(error_break_boolean(true, folder_check("$pathName")))}
+fun init_file(){
+
+}
+fun init_opt_folder(){
+    init_folder("$configFolder/RSets")//Mapping possible management options
+    init_folder("$dataFolder/cookies")//temporary storage state(Including the status of receiving and sending)
 }
