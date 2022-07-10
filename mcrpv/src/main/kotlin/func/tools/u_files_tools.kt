@@ -30,6 +30,6 @@ fun file_check(pathName :String,fileName :String) :Boolean{
     }
     return result.toBoolean()
 }
-fun file_done(pathName :String, fileName :String,isExists :Boolean) :Boolean = if(isExists.equals(true)){File(pathName+"/"+ fileName).createNewFile();logger.info("The $pathName/$fileName doesn't exist,so it works.");true} else {logger.info("The $pathName/$fileName exists,so it doesn't work.");false}
+fun file_done(pathName :String, fileName :String,isExists :Boolean) :Boolean = if(isExists.equals(true)){logger.info("The $pathName/$fileName exists,so it doesn't work.");false} else {File(pathName+"/"+ fileName).createNewFile();logger.info("The $pathName/$fileName doesn't exist,so it works.");true}
 fun json_name_check(jsonName :String):String=if(jsonName.endsWith(".json")) jsonName else "$jsonName.json"
-fun json_done(pathName :String,jsonName :String,isExists :Boolean) :Boolean = if(isExists.equals(false)){File(pathName+"/"+json_name_check(jsonName)).createNewFile();logger.info("The $pathName/$jsonName(json) doesn't exist,so it works.");true} else {logger.info("The $pathName/$jsonName(json) exists,so it doesn't work.");false}
+fun json_done(pathName :String,jsonName :String,isExists :Boolean) :Boolean = if(isExists.equals(true)){logger.info("The $pathName/$jsonName(json) exists,so it doesn't work.");false} else {File(pathName+"/"+json_name_check(jsonName)).createNewFile();logger.info("The $pathName/$jsonName(json) doesn't exist,so it works.");true}
