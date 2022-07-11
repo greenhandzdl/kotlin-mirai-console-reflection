@@ -22,12 +22,13 @@ fun init_json(pathName :String, jsonName :String){
 fun init_opt_folder(){
     init_folder("$configFolder/RSets")//Mapping possible management options
     init_folder("$dataFolder/cache")//temporary storage state(Including the status of receiving and sending)
+    init_folder("$dataFolder/groupMessage")
 }
 fun init_opt_file(){
     //init_file("$dataFolder","cache")
 }
 fun init_opt_json(){
-    init_json("$dataFolder","cache")
+    //init_json("$dataFolder","cache")
 }
 fun init_opt(){
     init_opt_folder()

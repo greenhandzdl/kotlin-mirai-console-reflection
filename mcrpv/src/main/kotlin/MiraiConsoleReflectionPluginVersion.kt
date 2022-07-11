@@ -1,6 +1,7 @@
 package com.greenhandzdl
 
 import com.greenhandzdl.func.*
+import com.greenhandzdl.func.tools.file_write_last_line
 import com.greenhandzdl.func.tools.json_read_string
 import com.greenhandzdl.func.tools.json_write_string
 import kotlinx.coroutines.delay
@@ -31,17 +32,15 @@ object MiraiConsoleReflectionPluginVersion : KotlinPlugin(
         init_opt()
         logger.info { "MCR Plugin loaded" }
         globalEventChannel().subscribeAlways<GroupMessageEvent> {
-            init_folder("$dataFolder/${group.id.toString()}")
-            init_json("$dataFolder/${group.id.toString()}", "${sender.id.toString()}")
-            json_write_string("$dataFolder/${group.id.toString()}", "${sender.id.toString()}", "${LocalDateTime.now(ZoneOffset.UTC)}", "${message.contentToString()}")
-            json_write_string("$dataFolder", "cache", "${group.id.toString()}/${sender.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}", "${message.contentToString()}")
-            runBlocking {
+            file_write_last_line("$dataFolder/groupMessage","${group.id.toString()}.txt","${sender.id.toString()}:${message.contentToString()}")
+            /**
+            json_write_string("$dataFolder/group", "cache", "${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}/${sender.id.toString()}", "${message.contentToString()}")
                 launch {
                     delay(8000L)//delay8000ms(=8s))
-                    val sm = json_read_string("$dataFolder/cache","${group.id.toString()}/${sender.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}", "${message.contentToString()}")//sendmessage
+                    val sm = json_read_string("$dataFolder/cache","${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}/\${sender.id.toString()", "${message.contentToString()}")//sendmessage
                     group.sendMessage(messageChainOf(At(sender)+PlainText("\n " + "$sm")))
-                }
             }
+            */
         }
     }
 }
