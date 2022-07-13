@@ -22,6 +22,9 @@ fun init_json(pathName :String, jsonName :String){
 fun init_opt_folder(){
     init_folder("$configFolder/RSets")//Mapping possible management options
     init_folder("$dataFolder/cache")//temporary storage state(Including the status of receiving and sending)
+    init_folder("$dataFolder/cache/groupMessage")
+    init_folder("$dataFolder/status")
+    init_folder("$dataFolder/status/groupMessage")
     init_folder("$dataFolder/groupMessage")
 }
 fun init_opt_file(){

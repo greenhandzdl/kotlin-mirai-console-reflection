@@ -1,9 +1,11 @@
 package com.greenhandzdl
 
 import com.greenhandzdl.func.*
+import com.greenhandzdl.func.tools.file_check
 import com.greenhandzdl.func.tools.file_write_last_line
 import com.greenhandzdl.func.tools.json_read_string
 import com.greenhandzdl.func.tools.json_write_string
+import func.tools.error_break_boolean
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -16,6 +18,7 @@ import net.mamoe.mirai.message.data.AtAll
 import net.mamoe.mirai.message.data.PlainText
 import net.mamoe.mirai.message.data.messageChainOf
 import net.mamoe.mirai.utils.info
+import java.io.File
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -32,15 +35,14 @@ object MiraiConsoleReflectionPluginVersion : KotlinPlugin(
         init_opt()
         logger.info { "MCR Plugin loaded" }
         globalEventChannel().subscribeAlways<GroupMessageEvent> {
+            logger.debug("${message.contentToString()}")
             file_write_last_line("$dataFolder/groupMessage","${group.id.toString()}.txt","${sender.id.toString()}:${message.contentToString()}")
-            /**
-            json_write_string("$dataFolder/group", "cache", "${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}/${sender.id.toString()}", "${message.contentToString()}")
-                launch {
-                    delay(8000L)//delay8000ms(=8s))
-                    val sm = json_read_string("$dataFolder/cache","${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}/\${sender.id.toString()", "${message.contentToString()}")//sendmessage
-                    group.sendMessage(messageChainOf(At(sender)+PlainText("\n " + "$sm")))
+            file_write_last_line("$dataFolder/status/groupMessage","status.txt","${group.id.toString()}")//Tell the bot what happened
+            launch {
+                    //delay(L)
+                    while(error_break_boolean(true, file_check("$dataFolder/cache/groupMessage/${group.id.toString()}", "${LocalDateTime.now(ZoneOffset.UTC)}|${sender.id.toString()}.txt")))
+                        group.sendMessage(messageChainOf(At(sender)+PlainText("\n " + "${File("$dataFolder/cache/groupMessage/${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}|${sender.id.toString()}.txt").readText()}")))
             }
-            */
         }
     }
 }
