@@ -1,0 +1,38 @@
+
+.
+├── git_sync.sh
+├── git_update.sh
+├── LICENSE
+├── mcrpv
+│   ├── build.gradle.kts
+│   ├── gradle
+│   │   └── wrapper
+│   │       └── gradle-wrapper.jar
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── illustration.dia
+│   ├── illustration.jpg
+│   ├── README.md
+│   ├── settings.gradle.kts
+│   └── src
+│       └── main
+│           ├── kotlin
+│           │   ├── func
+│           │   │   ├── init_optional.kt
+│           │   │   └── tools
+│           │   │       ├── download_tools.kt
+│           │   │       ├── error_tools.kt
+│           │   │       ├── folder_tools.kt
+│           │   │       ├── json_tools.kt
+│           │   │       ├── logger.kt
+│           │   │       ├── time_tools.kt
+│           │   │       └── u_files_tools.kt
+│           │   └── MiraiConsoleReflectionPluginVersion.kt
+│           └── resources
+│               └── META-INF
+│                   └── services
+│                       └── net.mamoe.mirai.console.plugin.jvm.JvmPlugin
+└── tree.txt
+
+11 directories, 23 files
