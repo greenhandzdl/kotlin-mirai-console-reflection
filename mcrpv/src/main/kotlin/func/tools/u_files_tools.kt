@@ -45,7 +45,6 @@ fun file_write_last_line(pathName: String,fileName: String,contents: String) :Bo
         f.appendText("${LocalDateTime.now(ZoneOffset.UTC)}|$contents", Charset.defaultCharset())
         true
     }
-
     return a
 }
 

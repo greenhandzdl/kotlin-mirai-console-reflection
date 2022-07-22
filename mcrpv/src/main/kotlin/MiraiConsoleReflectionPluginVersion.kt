@@ -35,13 +35,9 @@ object MiraiConsoleReflectionPluginVersion : KotlinPlugin(
         init_opt()
         logger.info { "MCR Plugin loaded" }
         globalEventChannel().subscribeAlways<GroupMessageEvent> {
-            logger.debug("${message.contentToString()}")
-            file_write_last_line("$dataFolder/groupMessage","${group.id.toString()}.txt","${sender.id.toString()}:${message.contentToString()}")
-            file_write_last_line("$dataFolder/status/groupMessage","status.txt","${group.id.toString()}")//Tell the bot what happened
+
             launch {
-                    //delay(L)
-                    while(error_break_boolean(true, file_check("$dataFolder/cache/groupMessage/${group.id.toString()}", "${LocalDateTime.now(ZoneOffset.UTC)}|${sender.id.toString()}.txt")))
-                        group.sendMessage(messageChainOf(At(sender)+PlainText("\n " + "${File("$dataFolder/cache/groupMessage/${group.id.toString()}/${LocalDateTime.now(ZoneOffset.UTC)}|${sender.id.toString()}.txt").readText()}")))
+
             }
         }
     }
